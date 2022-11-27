@@ -35,10 +35,10 @@ const availableGenders = ['male', 'female'];
 
 
 //1- Mostrar en formato de tabla todos los alumnos.
-console.table(students)
+console.table(students);
 
 //2- Mostrar por consola la cantidad de alumnos que hay en clase.
-console.log('number of students: ', students.length)
+console.log('number of students: ', students.length);
 
 //3- Mostrar por consola todos los nombres de los alumnos.
 function getName(object) {
@@ -51,24 +51,24 @@ students.forEach(getName);
 students.pop();
 
 //5- Eliminar un alumno aleatoriamente de la clase.
-students.splice(Math.floor(Math.random() * students.length), 1)
+students.splice(Math.floor(Math.random() * students.length), 1);
 
 //6- Mostrar por consola todos los datos de los alumnos que son chicas.
-const girls = students.filter(student => student.gender === 'female')
+const girls = students.filter(student => student.gender === 'female');
 console.table(girls);
 
 // 7- Mostrar por consola el número de chicos y chicas que hay en la clase.
-const numOfFemaleStudents = students.filter(student => student.gender === 'female').length
-const numOfMaleStudents = students.filter(student => student.gender === 'male').length
-console.log('number of female students: ', numOfFemaleStudents)
-console.log('number of male students: ', numOfMaleStudents)
+const numOfFemaleStudents = students.filter(student => student.gender === 'female').length;
+const numOfMaleStudents = students.filter(student => student.gender === 'male').length;
+console.log('number of female students: ', numOfFemaleStudents);
+console.log('number of male students: ', numOfMaleStudents);
 
 // 8- Mostrar true o false por consola si todos los alumnos de la clase son chicas.
-const AreOnlyGirls = students.every(student => student.gender === 'female')
-console.log(AreOnlyGirls)
+const AreOnlyGirls = students.every(student => student.gender === 'female');
+console.log(AreOnlyGirls);
 
 // 9- Mostrar por consola los nombres de los alumnos que tengan entre 20 y 25 años.
-const studentsFrom20To25 = students.filter(student => student.age >= 20 && student.age <= 25)
+const studentsFrom20To25 = students.filter(student => student.age >= 20 && student.age <= 25);
 studentsFrom20To25.forEach(getName);
 
 // 10- Añadir un alumno nuevo con los siguientes datos:
@@ -93,7 +93,7 @@ function calculateRandomNumber (min, max) {
     return randomNumber
 }
 
-let randomAge = calculateRandomNumber (20, 50)
+let randomAge = calculateRandomNumber (20, 50);
 
 students.push({
     age: randomAge,
@@ -111,35 +111,35 @@ students.sort(function(a, b) {
   return b.age - a.age 
 }) 
 
-let youngestStudent = students.filter(student => student.age == students.at(-1).age)
+let youngestStudent = students.filter(student => student.age == students.at(-1).age);
 
-youngestStudent.forEach(getName)
+youngestStudent.forEach(getName);
 
 
 // 12- Mostrar por consola la edad media de todos los alumnos de la clase.
 
-const averageAge = students.reduce((a, b) => a + b.age, 0) / students.length
-console.log('The average age is: ', averageAge)
+const averageAge = students.reduce((a, b) => a + b.age, 0) / students.length;
+console.log('The average age is: ', averageAge);
 
 // 13- Mostrar por consola la edad media de las chicas de la clase.
-const girlsAverageAge = girls.reduce((a, b) => a + b.age, 0) / girls.length
-console.log('The average age of girls is: ', girlsAverageAge)
+const girlsAverageAge = girls.reduce((a, b) => a + b.age, 0) / girls.length;
+console.log('The average age of girls is: ', girlsAverageAge);
 
 
 // 14- Añadir nueva nota a los alumnos. Por cada alumno de la clase, tendremos que calcular una nota de forma aleatoria(número entre 0 y 10) y añadirla a su listado de notas.
 
 students.forEach(function(student) {
-  student.examScores.push(calculateRandomNumber(0,10))
+  student.examScores.push(calculateRandomNumber(0,10));
 })
 
 
 // 15- Ordenar el array de alumnos alfabéticamente según su nombre.
-console.log(students.sort((a, b) => a.name.localeCompare(b.name)))
+console.log(students.sort((a, b) => a.name.localeCompare(b.name)));
 
 // 16- Mostrar por consola el alumno de la clase con las mejores notas.
 // El alumno con mejores notas es aquel cuyo sumatorio de todas sus notas es el valor más alto de todos.
 
-let lista_student_note = []
+let lista_student_note = [];
 
 students.forEach(function(student) {
     let total = student.examScores.reduce((a,b) => a + b, 0);
@@ -150,11 +150,11 @@ lista_student_note.sort(function(a, b){return b[1]-a[1]});
 
 let highestNote = lista_student_note.filter(mark => mark[1] == lista_student_note.at(0)[1])
 
-console.log(highestNote)
+console.log(highestNote);
 
 
 // 17- Mostrar por consola la nota media más alta de la clase y el nombre del alumno al que pertenece.
-let lista_student_average = []
+let lista_student_average = [];
 
 students.forEach(function(student) {
     let total2 = student.examScores.reduce((a,b) => a + b, 0) / student.examScores.length;
@@ -163,9 +163,9 @@ students.forEach(function(student) {
 
 lista_student_average.sort(function(a, b){return b[1]-a[1]});
 
-let highestAverage = lista_student_average.filter(mark => mark[1] == lista_student_average.at(0)[1])
+let highestAverage = lista_student_average.filter(mark => mark[1] == lista_student_average.at(0)[1]);
 
-console.log(highestAverage)
+console.log(highestAverage);
 
 
 // 18- Añadir un punto extra a cada nota existente de todos los alumnos. Recordad que la nota máxima posible es 10. Si los alumnos aún no tienen registrada ninguna nota, les pondremos un 10.
