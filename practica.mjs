@@ -1,32 +1,30 @@
-import readline from "readline";
-  
-  const students = [{
+const students = [{
   age: 32,
-  examScores: [],
+  examScores: [1],
   gender: 'male',
   name: 'edu'
 },
 {
   age: 29,
-  examScores: [],
+  examScores: [5],
   gender: 'female',
   name: 'silvia'
 },
 {
   age: 18,
-  examScores: [],
+  examScores: [6],
   gender: 'female',
   name: 'emily'
 },
 {
   age: 21,
-  examScores: [],
+  examScores: [8],
   gender: 'female',
   name: 'anna'
 },
 {
   age: 19,
-  examScores: [],
+  examScores: [7],
   gender: 'female',
   name: 'paloma'
 }]
@@ -51,11 +49,9 @@ students.forEach(getName);
 
 //4- Eliminar el último alumno de la clase.
 students.pop();
-console.table(students);
 
 //5- Eliminar un alumno aleatoriamente de la clase.
 students.splice(Math.floor(Math.random() * students.length), 1)
-console.table(students);
 
 //6- Mostrar por consola todos los datos de los alumnos que son chicas.
 const girls = students.filter(student => student.gender === 'female')
@@ -136,9 +132,55 @@ students.forEach(function(student) {
   student.examScores.push(calculateRandomNumber(0,10))
 })
 
-console.table(students)
-
 
 // 15- Ordenar el array de alumnos alfabéticamente según su nombre.
 console.log(students.sort((a, b) => a.name.localeCompare(b.name)))
+
+// 16- Mostrar por consola el alumno de la clase con las mejores notas.
+// El alumno con mejores notas es aquel cuyo sumatorio de todas sus notas es el valor más alto de todos.
+
+let lista_student_note = []
+
+students.forEach(function(student) {
+    let total = student.examScores.reduce((a,b) => a + b, 0);
+    lista_student_note.push([student.name, total])
+})
+
+lista_student_note.sort(function(a, b){return b[1]-a[1]});
+
+let highestNote = lista_student_note.filter(mark => mark[1] == lista_student_note.at(0)[1])
+
+console.log(highestNote)
+
+
+// 17- Mostrar por consola la nota media más alta de la clase y el nombre del alumno al que pertenece.
+let lista_student_average = []
+
+students.forEach(function(student) {
+    let total2 = student.examScores.reduce((a,b) => a + b, 0) / student.examScores.length;
+    lista_student_average.push([student.name, total2])
+})
+
+lista_student_average.sort(function(a, b){return b[1]-a[1]});
+
+let highestAverage = lista_student_average.filter(mark => mark[1] == lista_student_average.at(0)[1])
+
+console.log(highestAverage)
+
+
+// 18- Añadir un punto extra a cada nota existente de todos los alumnos. Recordad que la nota máxima posible es 10. Si los alumnos aún no tienen registrada ninguna nota, les pondremos un 10.
+students.forEach(function(student) {
+  if (student.examScores.length > 0) {
+      student.examScores = student.examScores.map(function(note) {
+          if (note < 10) {
+              return note += 1
+              }
+          else {
+              return note
+          }
+           });
+  } else if (student.examScores.length === 0){
+      student.examScores.push(10)
+  };
+});
 
